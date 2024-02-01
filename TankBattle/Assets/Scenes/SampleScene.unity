@@ -24248,7 +24248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Width: 0.8
   Height: 0.8
-  Draw: 1
+  Draw: 0
   CountLines: 93
 --- !u!1 &1895763713
 GameObject:
