@@ -70,12 +70,6 @@ namespace Assets.Scripts.Player
                 _animator.SetFloat(XKey, 0);
                 _input.x = 0;
             }
-
-            if (_input.x == 0 && _input.y == 0)
-            {
-                
-            }
-
         }
 
         public void FixedUpdate()
