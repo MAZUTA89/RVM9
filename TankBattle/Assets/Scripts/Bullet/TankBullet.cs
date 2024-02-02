@@ -51,17 +51,7 @@ namespace Assets.Scripts.Bullet
         }
         private void OnDestroy()
         {
-            //BlowParticle.gameObject.transform.position = transform.position;
-            //BlowParticle.Play(false);
             var go = Instantiate(BlowParticle, transform.position, Quaternion.identity, null);
-            // Настройка слоя сортировки ParticleSystem
-            // Настройка слоя сортировки SpriteRenderer
-            SpriteRenderer spriteRenderer = go.GetComponent<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                spriteRenderer.sortingLayerName = particleSortingLayerName;
-                spriteRenderer.sortingOrder = particleSortingOrder;
-            }
         }
     }
 }
