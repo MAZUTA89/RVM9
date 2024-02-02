@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8371439f7e190a440853a8a0b7a53f96
+guid: da3d031ea16407448a268a81bf010bdd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 68
+  spritePixelsToUnits: 80
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: simple-sheet_0
+      name: hunt-sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09b58f605baea0e4bb10b9c6f0d9214b
-      internalID: 1782940125
+      spriteID: a9fb1bb2176391249a7940582f25dd54
+      internalID: 266291300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: simple-sheet_1
+      name: hunt-sheet_1
       rect:
         serializedVersion: 2
         x: 52
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c23afaf09d5faea45a735d1aa2fdd77c
-      internalID: -448664162
+      spriteID: 3385d90feeea610459e90564673bbd09
+      internalID: 126908038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: simple-sheet_2
+      name: hunt-sheet_2
       rect:
         serializedVersion: 2
         x: 104
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa4cdb70b20fc924098078d96c78d370
-      internalID: 1597295390
+      spriteID: 7e8b01413d542ed4689296b93260113c
+      internalID: 1799110101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: simple-sheet_3
+      name: hunt-sheet_3
       rect:
         serializedVersion: 2
         x: 156
@@ -182,8 +182,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67e47bf418c218b49a7c2e6d75e9ca5c
-      internalID: 1841376453
+      spriteID: 8e3a97bb12babef489418ed37f2b29c0
+      internalID: 1076384030
       vertices: []
       indices: 
       edges: []
@@ -199,10 +199,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      simple-sheet_1: -448664162
-      simple-sheet_2: 1597295390
-      simple-sheet_3: 1841376453
-      simple-sheet_0: 1782940125
+      hunt-sheet_3: 1076384030
+      hunt-sheet_1: 126908038
+      hunt-sheet_2: 1799110101
+      hunt-sheet_0: 266291300
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
