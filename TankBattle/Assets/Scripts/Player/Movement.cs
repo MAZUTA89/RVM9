@@ -18,6 +18,7 @@ namespace Assets.Scripts.Player
     {
         [SerializeField] float MovementSpeed;
         InputService _inputService;
+        PlayerDirection _playerDirection;
 
         protected int XKey;
         protected int YKey;
@@ -29,9 +30,10 @@ namespace Assets.Scripts.Player
         SpriteRenderer _sr;
         Animator _animator;
         [Inject]
-        public void Construct(InputService inputService)
+        public void Construct(InputService inputService, PlayerDirection playerDirection)
         {
             _inputService = inputService;
+            _playerDirection = playerDirection;
         }
 
         private void Start()
@@ -41,6 +43,8 @@ namespace Assets.Scripts.Player
             _animator = GetComponent<Animator>();
             XKey = Animator.StringToHash("X");
             YKey = Animator.StringToHash("Y");
+
+            _playerDirection.SetDirection(new Vector2(0, -1));
         }
         private void Update()
         {
@@ -69,6 +73,10 @@ namespace Assets.Scripts.Player
                 _animator.SetFloat(YKey, -1);
                 _animator.SetFloat(XKey, 0);
                 _input.x = 0;
+            }
+            if(_input != Vector2.zero)
+            {
+                _playerDirection.SetDirection(_input);
             }
         }
 
