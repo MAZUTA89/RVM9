@@ -86,4 +86,11 @@ public class PrefabSwitch : MonoBehaviour
         // Destroy the old game object, immediately, so it takes effect in the editor.
         DestroyImmediate(oldGameObject);
     }
+    public void RenamePrefabs()
+    {
+        for (int i = 0; i < oldGameObjects.Length; i++)
+        {
+            oldGameObjects[i].name += oldGameObjects[i] + i.ToString();
+        }
+    }
 }

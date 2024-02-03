@@ -1,8 +1,8 @@
 ﻿using Assets.Scripts.Enemy;
 using Assets.Scripts.Enemy.MoveTerritores;
-using System;
 using Zenject;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Assets.Scripts.Installers
 {
@@ -10,18 +10,19 @@ namespace Assets.Scripts.Installers
     {
         [SerializeField] int MaxLengthHorizontal = 18;
         [SerializeField] int MaxLenghtVertical = 16;
+        [SerializeField] List<MoveTerritory> MoveTerritores;
         [SerializeField] EnemySO EnemySO;
         public override void InstallBindings()
         {
             BindMoveTerritiryProvider();
-            Container.Bind<MoveTerritory>().FromComponentInHierarchy().AsTransient();
             Container.BindInstance(EnemySO).AsSingle();
             Container.Bind<SimpleTank>().AsSingle();
         }
         void BindMoveTerritiryProvider()
         {
             MoveTerritoryProvider moveTerritoryProvider =
-                new MoveTerritoryProvider(MaxLengthHorizontal, MaxLenghtVertical);
+                new MoveTerritoryProvider(MaxLengthHorizontal, MaxLenghtVertical,
+                MoveTerritores);
             Container.BindInstance(moveTerritoryProvider).AsSingle();
         }
     }

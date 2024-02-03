@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 8657636220155762135}
   - component: {fileID: 8218647256977265824}
   m_Layer: 0
-  m_Name: back-black
+  m_Name: MoveObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

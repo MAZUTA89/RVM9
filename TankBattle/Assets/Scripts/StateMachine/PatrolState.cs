@@ -16,6 +16,7 @@ namespace Assets.Scripts.Enemy.StateMachine.States
     {
         protected MoveTerritoryProvider MoveTerritoryProvider;
         protected Vector3 CurrentMovePoint;
+        protected MoveTerritory MoveTerritoryInProgress;
         protected NavMeshAgent Agent;
         protected EnemySO EnemySO;
         public PatrolState(EnemyTank tankEnemy,
@@ -32,7 +33,8 @@ namespace Assets.Scripts.Enemy.StateMachine.States
         public override void Enter()
         {
             base.Enter();
-           InitializeMovepoint();
+            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory(new MoveTerritoryIndex() { Jndex = 10, Index = 1});
+            //InitializeMovepoint();
         }
 
         public override void LogicUpdate()
@@ -42,16 +44,17 @@ namespace Assets.Scripts.Enemy.StateMachine.States
         }
         protected virtual void Patroling() 
         {
-            Agent.destination = CurrentMovePoint;
+            //Agent.destination = CurrentMovePoint;
 
-            if(Agent.remainingDistance < EnemySO.DistanceToChangePoint)
-            {
-                InitializeMovepoint();
-            }
+            //if(Agent.remainingDistance < EnemySO.DistanceToChangePoint)
+            //{
+            //    InitializeMovepoint();
+            //}
         }
         void InitializeMovepoint()
         {
-            CurrentMovePoint = MoveTerritoryProvider.GetRandomMoveTerritorypPosition();
+            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory(MoveTerritoryInProgress.MoveTerritoryIndex);
+            CurrentMovePoint = MoveTerritoryInProgress.transform.position;
         }
     }
 }

@@ -29,5 +29,10 @@ public class PrefabSwitchEditor : Editor
             // if it is clicked, call the SwapAllByArray method from prefabSwitch.
             prefabSwitch.SwapAllByArray();
         }
+
+        if(GUILayout.Button("Rename"))
+        {
+            prefabSwitch.RenamePrefabs();
+        }
     }
 }
