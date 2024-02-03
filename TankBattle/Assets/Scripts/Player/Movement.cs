@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Input;
+using Assets.Scripts.Obstacles;
 using ModestTree;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,8 @@ namespace Assets.Scripts.Player
     public class Movement : MonoBehaviour
     {
         [SerializeField] float MovementSpeed;
+        [SerializeField] float TreeMovementSpeed;
+        float _currentMovementSpeed;
         InputService _inputService;
         PlayerDirection _playerDirection;
 
@@ -45,6 +48,7 @@ namespace Assets.Scripts.Player
             YKey = Animator.StringToHash("Y");
 
             _playerDirection.SetDirection(new Vector2(0, -1));
+            _currentMovementSpeed = MovementSpeed;
         }
         private void Update()
         {
@@ -85,9 +89,25 @@ namespace Assets.Scripts.Player
             _newPos = _rb.position + _input;
             _newPos += _input;
             _newPos = Vector2.SmoothDamp(_rb.position, _newPos, ref _velocity,
-                Time.fixedDeltaTime, MovementSpeed);
+                Time.fixedDeltaTime, _currentMovementSpeed);
             _rb.MovePosition(_newPos);
             
+        }
+        public void OnTriggerEnter2D(Collider2D collision)
+        {
+            var go = collision.gameObject;
+            if(go.TryGetComponent(out TreeObstacle treeObstacle))
+            {
+                _currentMovementSpeed = TreeMovementSpeed;
+            }
+        }
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            var go = collision.gameObject;
+            if (go.TryGetComponent(out TreeObstacle treeObstacle))
+            {
+                _currentMovementSpeed = MovementSpeed;
+            }
         }
     }
 }
