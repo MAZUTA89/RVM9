@@ -26,6 +26,7 @@ namespace Assets.Scripts.Enemy
             TankStateMachine = new TankStateMachine();
 
             MoveTerritoryProvider.Initialize();
+            StartCoroutine(MoveTerritoryProvider.DeleteObjectsWithDelay());
 
             PatrolState = new SimplePatrolState(this, TankStateMachine, MoveTerritoryProvider, EnemySO);
 

@@ -33,7 +33,8 @@ namespace Assets.Scripts.Enemy.StateMachine.States
         public override void Enter()
         {
             base.Enter();
-            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory(new MoveTerritoryIndex() { Jndex = 10, Index = 1});
+            
+            //MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory(new MoveTerritoryIndex() { Jndex = 10, Index = 1});
             //InitializeMovepoint();
         }
 
@@ -42,8 +43,16 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             base.LogicUpdate();
             Patroling();
         }
+        float _currrentTime;
+        float delay = 0.5f;
         protected virtual void Patroling() 
         {
+            _currrentTime += Time.deltaTime;
+            if(_currrentTime > delay)
+            {
+                _currrentTime = 0f;
+               // MoveTerritoryProvider.DeactivateTerritory();
+            }
             //Agent.destination = CurrentMovePoint;
 
             //if(Agent.remainingDistance < EnemySO.DistanceToChangePoint)
