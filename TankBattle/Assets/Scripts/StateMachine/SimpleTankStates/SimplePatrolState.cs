@@ -9,9 +9,9 @@ namespace Assets.Scripts.Enemy.StateMachine.States
 {
     public class SimplePatrolState : PatrolState
     {
-        public SimplePatrolState(EnemyTank tankEnemy, TankStateMachine stateMachine,
+        public SimplePatrolState(EnemyTank tankEnemy, TankStateMachine stateMachine, Animator animator,
             MoveTerritoryProvider moveTerritoryProvider, EnemySO enemySO)
-            : base(tankEnemy, stateMachine, moveTerritoryProvider, enemySO)
+            : base(tankEnemy, stateMachine, animator, moveTerritoryProvider, enemySO)
         {
             Agent.speed = enemySO.Speed;
         }

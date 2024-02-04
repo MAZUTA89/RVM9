@@ -8,8 +8,8 @@ namespace Assets.Scripts.Installers
 {
     public class EnemyInstaller : MonoInstaller
     {
-        [SerializeField] int MaxLengthHorizontal = 18;
-        [SerializeField] int MaxLenghtVertical = 16;
+        [SerializeField] int MaxLengthHorizontal;
+        [SerializeField] int MaxLenghtVertical;
         [SerializeField] List<MoveTerritory> MoveTerritores;
         [SerializeField] EnemySO EnemySO;
         public override void InstallBindings()

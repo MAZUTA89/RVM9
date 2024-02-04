@@ -6,10 +6,12 @@ using UnityEngine.AI;
 
 namespace Assets.Scripts.Enemy
 {
+    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class EnemyTank : MonoBehaviour
     {
         public NavMeshAgent Agent {  get; protected set; }
+        public Animator Animator { get; private set; }
         protected TankStateMachine TankStateMachine;
         // Start is called before the first frame update
         void Start()
@@ -17,6 +19,7 @@ namespace Assets.Scripts.Enemy
             Agent = GetComponent<NavMeshAgent>();
             Agent.updateRotation = false;
             Agent.updateUpAxis = false;
+            Animator = GetComponent<Animator>();
             OnStart();
             InitializeStateMachine();
         }
