@@ -9,9 +9,10 @@ namespace Assets.Scripts.Obstacles
 {
     public class Obstacle : MonoBehaviour
     {
+        protected GameObject go;
         public virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            var go = collision.gameObject;
+            go = collision.gameObject;
             if(go.CompareTag("Bullet"))
             {
                 Destroy(go);

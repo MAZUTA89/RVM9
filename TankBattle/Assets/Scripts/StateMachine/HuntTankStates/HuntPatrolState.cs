@@ -33,11 +33,13 @@ namespace Assets.Scripts.Enemy.StateMachine.States
                 StateMachine.ChangeState((TankEnemy as HuntTank).AttackPlayerState);
                 return;
             }
+            if(TankEnemy.IsVeiwBoss)
+            {
+                StateMachine.ChangeState((TankEnemy as HuntTank).AttackBossState);
+                return;
+            }
         }
 
-        public void SetMoveTerritory(MoveTerritory moveTerritory)
-        {
-            InitializeMovepoint(moveTerritory);
-        }
+        
     }
 }

@@ -52,7 +52,7 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             base.Enter();
 
             MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory
-                (new MoveTerritoryIndex() { Jndex = 10, Index = 2 }, out Direction);
+                (new MoveTerritoryIndex() { Jndex = 9, Index = 7 }, out Direction);
             CurrentMovePoint = MoveTerritoryInProgress.transform.position;
             //InitializeMovepoint();
         }
@@ -119,7 +119,10 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             CurrentMovePoint = MoveTerritoryInProgress.transform.position;
         }
         #endregion
-       
-        
+        public void SetMoveTerritory(MoveTerritory moveTerritory)
+        {
+            InitializeMovepoint(moveTerritory);
+        }
+
     }
 }

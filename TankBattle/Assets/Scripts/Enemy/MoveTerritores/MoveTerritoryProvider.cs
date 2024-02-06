@@ -200,8 +200,8 @@ namespace Assets.Scripts.Enemy.MoveTerritores
         {
             iStart = moveTerritoryIndex.Index;
             jStart = moveTerritoryIndex.Jndex;
-            //Side randomSide = Side.Up;
-            Side randomSide = (Side)Random.Range(1, 5);
+            Side randomSide = Side.Down;
+            //Side randomSide = (Side)Random.Range(1, 5);
             DirectionSide = randomSide;
             switch (randomSide)
             {

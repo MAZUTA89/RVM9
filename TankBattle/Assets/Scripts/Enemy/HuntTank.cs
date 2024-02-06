@@ -17,6 +17,7 @@ namespace Assets.Scripts.Enemy
         public PlayerTankTerritory PlayerTankTerritory { get; private set; }
         public HuntPatrolState PatrolState { get; private set; }
         public HuntAttackPlayerState AttackPlayerState { get; private set;}
+        public AttackBossState AttackBossState { get; private set; }
         [Inject]
         public void Construct(MoveTerritoryProvider moveTerritoryProvider, EnemySO enemySO,
             [Inject(Id = "BulletPrefab")] GameObject bulletPrefab,
@@ -37,6 +38,7 @@ namespace Assets.Scripts.Enemy
             AttackPlayerState = new HuntAttackPlayerState(this, TankStateMachine,
                 PlayerTankTerritory, EnemySO);
 
+            AttackBossState = new AttackBossState(this, TankStateMachine);
             TankStateMachine.Initialize(PatrolState);
         }
 
