@@ -24,6 +24,7 @@ namespace Assets.Scripts.Installers
             Container.Bind<PlayerTankGun>().AsTransient();
             Container.BindInstance(BulletPrefab).WithId("BulletPrefab").AsTransient();
             Container.BindInstance(TankGunSO).AsTransient();
+            Container.Bind<PlayerTankTerritory>().FromComponentInHierarchy().AsSingle();
         }
     }
 }

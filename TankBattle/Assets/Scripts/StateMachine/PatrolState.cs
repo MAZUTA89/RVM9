@@ -10,6 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine.AI;
 using static Assets.Scripts.Enemy.MoveTerritores.MoveTerritoryProvider;
+using Assets.Scripts.Bullet;
+using Assets.Scripts.Gun;
+using Assets.Scripts.Player;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Assets.Scripts.Enemy.StateMachine.States
 {
@@ -21,9 +25,14 @@ namespace Assets.Scripts.Enemy.StateMachine.States
         protected NavMeshAgent Agent;
         protected EnemySO EnemySO;
         protected Animator Animator;
+        protected Side Direction;
         protected int XParameter;
         protected int YParameter;
-        protected Side Direction;
+        protected string XParameterName;
+        protected string YParameterName;
+
+
+
         public PatrolState(EnemyTank tankEnemy,
             TankStateMachine stateMachine,
             Animator animator,
@@ -35,15 +44,15 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             Agent = TankEnemy.Agent;
             EnemySO = enemySO;
             Animator = animator;
-            XParameter = Animator.StringToHash("XS");
-            YParameter = Animator.StringToHash("YS");
+            Agent.speed = EnemySO.Speed;
         }
 
         public override void Enter()
         {
             base.Enter();
 
-            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory(new MoveTerritoryIndex() { Jndex = 10, Index = 2 }, out Direction);
+            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory
+                (new MoveTerritoryIndex() { Jndex = 10, Index = 2 }, out Direction);
             CurrentMovePoint = MoveTerritoryInProgress.transform.position;
             //InitializeMovepoint();
         }
@@ -54,18 +63,20 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             Patroling();
         }
 
+        #region PatrolingRegion
         protected virtual void Patroling()
         {
             Agent.destination = CurrentMovePoint;
             float distance = Vector3.Distance(TankEnemy.transform.position, CurrentMovePoint);
-            Debug.Log(distance);
+            //Debug.Log(distance);
             if (distance < EnemySO.DistanceToChangePoint)
             {
-                InitializeMovepoint();
+                InitializeMovepoint(MoveTerritoryInProgress);
+                Debug.Log($"{Direction}");
             }
-            AnimatePatrloing();
+            AnimatePatrloingAndInitializeDirection();
         }
-        void AnimatePatrloing()
+        void AnimatePatrloingAndInitializeDirection()
         {
             switch (Direction)
             {
@@ -73,34 +84,42 @@ namespace Assets.Scripts.Enemy.StateMachine.States
                     {
                         Animator.SetFloat(XParameter, -1);
                         Animator.SetFloat(YParameter, 0);
+                        TankEnemy.NormalizedDirection = new Vector2(-1, 0);
                         break;
                     }
                 case Side.Right:
                     {
                         Animator.SetFloat(XParameter, 1);
                         Animator.SetFloat(YParameter, 0);
+                        TankEnemy.NormalizedDirection = new Vector2(1, 0);
                         break;
                     }
                 case Side.Up:
                     {
                         Animator.SetFloat(XParameter, 0);
                         Animator.SetFloat(YParameter, 1);
+                        TankEnemy.NormalizedDirection = new Vector2(0, 1);
                         break;
                     }
                 case Side.Down:
                     {
                         Animator.SetFloat(XParameter, 0);
                         Animator.SetFloat(YParameter, -1);
+                        TankEnemy.NormalizedDirection = new Vector2(0, -1);
                         break;
                     }
             }
 
         }
-        void InitializeMovepoint()
+        protected void InitializeMovepoint(MoveTerritory reachedTerritory)
         {
-            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory(MoveTerritoryInProgress.MoveTerritoryIndex
-                , out Direction);
+            MoveTerritoryInProgress = MoveTerritoryProvider.
+                GetRandomMoveTerritory(reachedTerritory.MoveTerritoryIndex
+                ,out Direction);
             CurrentMovePoint = MoveTerritoryInProgress.transform.position;
         }
+        #endregion
+       
+        
     }
 }

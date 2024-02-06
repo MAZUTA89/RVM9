@@ -12,5 +12,9 @@ namespace Assets.Scripts.Enemy
     {
         public float DistanceToChangePoint;
         public float Speed;
+        public float ShootDelay;
+        public float BulletSpeed;
+        public float ShootOffset;
+        public float ViewDistance;
     }
 }

@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DistanceToChangePoint: 0.38
   Speed: 0.76
+  ShootDelay: 2
+  BulletSpeed: 2.8
+  ShootOffset: 0.44
+  ViewDistance: 7.96

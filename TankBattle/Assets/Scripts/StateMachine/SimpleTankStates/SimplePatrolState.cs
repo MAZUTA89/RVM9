@@ -13,14 +13,17 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             MoveTerritoryProvider moveTerritoryProvider, EnemySO enemySO)
             : base(tankEnemy, stateMachine, animator, moveTerritoryProvider, enemySO)
         {
-            Agent.speed = enemySO.Speed;
+            XParameterName = "XS";
+            YParameterName = "YS";
+            XParameter = Animator.StringToHash(XParameterName);
+            YParameter = Animator.StringToHash(YParameterName);
         }
 
         protected override void Patroling()
         {
             base.Patroling();
-
-
+            TankEnemy.ShootingWithDelay();
         }
+        
     }
 }

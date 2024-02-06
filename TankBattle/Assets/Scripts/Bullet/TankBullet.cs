@@ -2,6 +2,7 @@
 using Assets.Scripts.Obstacles;
 using Assets.Scripts.Player;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,9 @@ namespace Assets.Scripts.Bullet
         private void OnDestroy()
         {
             var go = Instantiate(BlowParticle, transform.position, Quaternion.identity, null);
+            ParticlesCleaner.Instance.CleanParticle(go);
         }
+
+        
     }
 }

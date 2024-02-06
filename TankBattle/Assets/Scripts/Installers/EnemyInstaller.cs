@@ -17,12 +17,14 @@ namespace Assets.Scripts.Installers
             BindMoveTerritiryProvider();
             Container.BindInstance(EnemySO).AsSingle();
             Container.Bind<SimpleTank>().AsSingle();
+            Container.Bind<HuntTank>().AsSingle();
         }
         void BindMoveTerritiryProvider()
         {
             MoveTerritoryProvider moveTerritoryProvider =
                 new MoveTerritoryProvider(MaxLengthHorizontal, MaxLenghtVertical,
                 MoveTerritores);
+            moveTerritoryProvider.Initialize();
             Container.BindInstance(moveTerritoryProvider).AsSingle();
         }
     }
