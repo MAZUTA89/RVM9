@@ -12,6 +12,7 @@ namespace Assets.Scripts.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public abstract class EnemyTank : MonoBehaviour
     {
+        [SerializeField] int Health;
         [SerializeField] LayerMask EnemyViewPlayerIgnoreLayer;
         [SerializeField] LayerMask EnemyViewBossIgnoreLayer;
         public NavMeshAgent Agent { get; protected set; }
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Enemy
         protected TankStateMachine TankStateMachine;
         public Vector2 NormalizedDirection { get; set; }
         public GameObject BulletPrefab { get; protected set; }
+        protected MoveTerritory SpawnTerritory;
         /// <summary>
         /// Видит игрока
         /// </summary>
@@ -70,6 +72,20 @@ namespace Assets.Scripts.Enemy
         protected virtual void OnTriggerExit(Collider other)
         {
             TankStateMachine.OnTriggerExit(other);
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            var go = collision.gameObject;
+            if(go.CompareTag("Bullet"))
+            {
+                Health--;
+                if(Health < 1)
+                {
+                    Destroy(gameObject);
+                }
+                Destroy(go);
+            }
         }
 
         public abstract void OnStart();
@@ -127,6 +143,10 @@ namespace Assets.Scripts.Enemy
             var go = UnityEngine.Object.Instantiate(BulletPrefab, position, Quaternion.identity, null);
 
             go.GetComponent<TankBullet>().SetDirection(NormalizedDirection);
+        }
+        public void InitializeSpawnTerritory(MoveTerritory moveTerritory)
+        {
+            SpawnTerritory = moveTerritory;
         }
     }
 }

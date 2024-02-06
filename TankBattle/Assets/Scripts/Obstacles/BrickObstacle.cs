@@ -8,33 +8,17 @@ using UnityEngine;
 
 namespace Assets.Scripts.Obstacles
 {
-    public class BrickObstacle : Obstacle
+    public class BrickObstacle : ArmorObstacle
     {
-        [SerializeField] float Armor = 5f;
         [SerializeField] MoveTerritory MoveTerritoryUnderBrick;
         
-        public void Damage()
+        public override void OnArmorZero()
         {
-            Armor -= 1;
-            if(Armor < 1)
+            base.OnArmorZero();
+            if (MoveTerritoryUnderBrick != null)
             {
-                if(MoveTerritoryUnderBrick != null)
-                {
-                    MoveTerritoryUnderBrick.SetEmpty(true);
-                }
-                Destroy(gameObject);
+                MoveTerritoryUnderBrick.SetEmpty(true);
             }
         }
-
-        public override void OnTriggerEnter2D(Collider2D collision)
-        {
-            var go  = collision.gameObject;
-            if (go.CompareTag("Bullet"))
-            {
-                Damage();
-                Destroy(go);
-            }
-        }
-        
     }
 }

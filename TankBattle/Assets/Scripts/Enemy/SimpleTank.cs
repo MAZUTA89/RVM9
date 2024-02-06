@@ -29,6 +29,8 @@ namespace Assets.Scripts.Enemy
             PatrolState = new SimplePatrolState(this, TankStateMachine, Animator,
                 MoveTerritoryProvider, EnemySO);
 
+            //PatrolState.SetMoveTerritory(SpawnTerritory);
+
             TankStateMachine.Initialize(PatrolState);
         }
 

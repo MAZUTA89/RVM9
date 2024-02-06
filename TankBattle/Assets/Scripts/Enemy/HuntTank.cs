@@ -35,6 +35,8 @@ namespace Assets.Scripts.Enemy
             PatrolState = new HuntPatrolState(this, TankStateMachine, Animator,
                 MoveTerritoryProvider, EnemySO, PlayerTankTerritory);
 
+            //PatrolState.SetMoveTerritory(SpawnTerritory);
+
             AttackPlayerState = new HuntAttackPlayerState(this, TankStateMachine,
                 PlayerTankTerritory, EnemySO);
 
