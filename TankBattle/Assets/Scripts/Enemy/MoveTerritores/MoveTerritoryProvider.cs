@@ -59,7 +59,7 @@ namespace Assets.Scripts.Enemy.MoveTerritores
             }
             SortArrayInEachRowX(_moveTerritories);
             InitializeIndexes();
-            PrintArray(_moveTerritories);
+            //PrintArray(_moveTerritories);
 
         }
         void InitializeIndexes()
@@ -127,7 +127,7 @@ namespace Assets.Scripts.Enemy.MoveTerritores
 
                     if (currentObject != null)
                     {
-                        Debug.Log($"Deactivate: {i} {j} X: {_moveTerritories[i][j].transform.position.x}");
+                        //Debug.Log($"Deactivate: {i} {j} X: {_moveTerritories[i][j].transform.position.x}");
                         currentObject.SetActive(false);
                     }
                 }
@@ -200,8 +200,8 @@ namespace Assets.Scripts.Enemy.MoveTerritores
         {
             iStart = moveTerritoryIndex.Index;
             jStart = moveTerritoryIndex.Jndex;
-            Side randomSide = Side.Down;
-            //Side randomSide = (Side)Random.Range(1, 5);
+            //Side randomSide = Side.Down;
+            Side randomSide = (Side)Random.Range(1, 5);
             DirectionSide = randomSide;
             switch (randomSide)
             {
@@ -303,14 +303,14 @@ namespace Assets.Scripts.Enemy.MoveTerritores
         {
             if (moveTerritories.Count < 1)
             {
-                Debug.LogError($"{moveTerritories} is empty");
-                Debug.LogError($"Choose: {iStart} {jStart}---------------------------------------------------");
+                //Debug.LogError($"{moveTerritories} is empty");
+                //Debug.LogError($"Choose: {iStart} {jStart}---------------------------------------------------");
                 return _moveTerritories[iStart][jStart];
             }
             else
             {
                 int randomIndex = Random.Range(0, moveTerritories.Count);
-                Debug.LogError($"Choose: {iStart} {randomIndex} ---------------------------------------------------");
+                //Debug.LogError($"Choose: {iStart} {randomIndex} ---------------------------------------------------");
                 return moveTerritories[randomIndex];
             }
         }

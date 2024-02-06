@@ -15,9 +15,9 @@ namespace Assets.Scripts.Installers
         public override void InstallBindings()
         {
             BindMoveTerritiryProvider();
-            Container.BindInstance(EnemySO).AsSingle();
-            Container.Bind<SimpleTank>().AsSingle();
-            Container.Bind<HuntTank>().AsSingle();
+            Container.BindInstance(EnemySO).AsTransient();
+            Container.Bind<SimpleTank>().AsTransient();
+            Container.Bind<HuntTank>().AsTransient();
         }
         void BindMoveTerritiryProvider()
         {
@@ -25,7 +25,7 @@ namespace Assets.Scripts.Installers
                 new MoveTerritoryProvider(MaxLengthHorizontal, MaxLenghtVertical,
                 MoveTerritores);
             moveTerritoryProvider.Initialize();
-            Container.BindInstance(moveTerritoryProvider).AsSingle();
+            Container.BindInstance(moveTerritoryProvider).AsTransient();
         }
     }
 }

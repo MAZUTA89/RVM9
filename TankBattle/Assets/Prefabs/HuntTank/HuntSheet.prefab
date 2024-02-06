@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 778842967790727735}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.566, y: -0.7717185, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -119,19 +119,19 @@ NavMeshAgent:
   m_GameObject: {fileID: 778842967790727735}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.39
+  m_Radius: 0.28
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 6.64
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.59
   m_BaseOffset: 0.325
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!50 &5628375894169150007
 Rigidbody2D:
   serializedVersion: 4
@@ -140,14 +140,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 778842967790727735}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -202,7 +202,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.65, y: 0.65}
+  m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &5485033574007738569
 MonoBehaviour:
@@ -216,9 +216,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4186de57ec764e47b546be3d2a1f731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 3
   EnemyViewPlayerIgnoreLayer:
     serializedVersion: 2
     m_Bits: 128
   EnemyViewBossIgnoreLayer:
     serializedVersion: 2
     m_Bits: 384
+  SpawnTerritory: {fileID: 0}

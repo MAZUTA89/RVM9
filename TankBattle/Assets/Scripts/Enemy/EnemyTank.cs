@@ -1,6 +1,7 @@
 using Assets.Scripts.Bullet;
 using Assets.Scripts.Enemy.MoveTerritores;
 using Assets.Scripts.Enemy.StateMachine;
+using Assets.Scripts.Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Enemy
         [SerializeField] int Health;
         [SerializeField] LayerMask EnemyViewPlayerIgnoreLayer;
         [SerializeField] LayerMask EnemyViewBossIgnoreLayer;
+        [SerializeField] protected MoveTerritory SpawnTerritory;
         public NavMeshAgent Agent { get; protected set; }
         public Animator Animator { get; protected set; }
         public MoveTerritoryProvider MoveTerritoryProvider { get; protected set; }
@@ -22,7 +24,6 @@ namespace Assets.Scripts.Enemy
         protected TankStateMachine TankStateMachine;
         public Vector2 NormalizedDirection { get; set; }
         public GameObject BulletPrefab { get; protected set; }
-        protected MoveTerritory SpawnTerritory;
         /// <summary>
         /// Видит игрока
         /// </summary>
@@ -100,7 +101,7 @@ namespace Assets.Scripts.Enemy
             if (raycastHit2D.collider == null)
                 return false;
 
-            if (raycastHit2D.collider.gameObject.CompareTag("Tank"))
+            if (raycastHit2D.collider.gameObject.TryGetComponent(out Movement movement))
             {
                 Debug.Log($"Вижу {raycastHit2D.collider.name}");
                 return true;
@@ -116,10 +117,7 @@ namespace Assets.Scripts.Enemy
                 EnemySO.ViewDistance, ~EnemyViewBossIgnoreLayer);
             if (raycastHit2D.collider == null)
                 return false;
-            else
-            {
-                Debug.Log(raycastHit2D.collider.name);
-            }
+            
             if (raycastHit2D.collider.gameObject.CompareTag("Boss"))
             {
                 return true;

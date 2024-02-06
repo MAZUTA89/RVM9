@@ -17,4 +17,4 @@ MonoBehaviour:
   ShootDelay: 2
   BulletSpeed: 2.8
   ShootOffset: 0.44
-  ViewDistance: 7.96
+  ViewDistance: 3.13

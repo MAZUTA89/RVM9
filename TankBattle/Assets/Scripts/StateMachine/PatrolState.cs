@@ -50,10 +50,6 @@ namespace Assets.Scripts.Enemy.StateMachine.States
         public override void Enter()
         {
             base.Enter();
-
-            MoveTerritoryInProgress = MoveTerritoryProvider.GetRandomMoveTerritory
-                (new MoveTerritoryIndex() { Jndex = 9, Index = 7 }, out Direction);
-            CurrentMovePoint = MoveTerritoryInProgress.transform.position;
             //InitializeMovepoint();
         }
 
@@ -72,7 +68,7 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             if (distance < EnemySO.DistanceToChangePoint)
             {
                 InitializeMovepoint(MoveTerritoryInProgress);
-                Debug.Log($"{Direction}");
+                //Debug.Log($"{Direction}");
             }
             AnimatePatrloingAndInitializeDirection();
         }
