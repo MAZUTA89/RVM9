@@ -51,7 +51,7 @@ namespace Assets.Scripts.Enemy.StateMachine.States
             {
                 _agent.destination = _playerTerritory.transform.position;
                 if (Vector3.Distance(_playerTerritory.transform.position, TankEnemy.transform.position)
-                    < EnemySO.DistanceToChangePoint + 0.5f)
+                    < EnemySO.DistanceToChangePoint)
                 {
                     _reachedPlayer = true;
                 }

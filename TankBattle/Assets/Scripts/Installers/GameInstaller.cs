@@ -25,6 +25,8 @@ namespace Assets.Scripts.Installers
             Container.BindInstance(BulletPrefab).WithId("BulletPrefab").AsTransient();
             Container.BindInstance(TankGunSO).AsTransient();
             Container.Bind<PlayerTankTerritory>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<MenuPanelHandler>().AsSingle();
+            Container.Bind<TankHealth>().AsSingle();
         }
     }
 }

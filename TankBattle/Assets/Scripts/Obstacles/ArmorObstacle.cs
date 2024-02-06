@@ -9,7 +9,8 @@ namespace Assets.Scripts.Obstacles
 {
     public class ArmorObstacle : Obstacle
     {
-        [SerializeField] int Armor;
+        [SerializeField] protected int Armor;
+        protected event Action<int> OnObstacleTakeDamage;
         public override void OnTriggerEnter2D(Collider2D collision)
         {
             base.OnTriggerEnter2D(collision);
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Obstacles
         public virtual void Damage()
         {
             Armor -= 1;
+            OnObstacleTakeDamage?.Invoke(Armor);
             if (Armor < 1)
             {
                 OnArmorZero();    

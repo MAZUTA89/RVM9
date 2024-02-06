@@ -7,6 +7,7 @@ namespace Assets.Scripts.Player
 {
     public class PlayerTankTerritory : MonoBehaviour
     {
+        [SerializeField] int Health;
         public MoveTerritory Territory {  get; private set; }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -14,6 +15,15 @@ namespace Assets.Scripts.Player
             {
                 Territory = territory;
             }
+            //if (collision.gameObject.CompareTag("Bullet"))
+            //{
+            //    Health--;
+            //    if (Health < 1)
+            //    {
+            //        Destroy(gameObject);
+            //    }
+            //    Destroy(collision.gameObject);
+            //}
         }
     }
 }

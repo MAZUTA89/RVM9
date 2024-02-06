@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d9b9e29b255234082d7689347fdb0b, type: 3}
   m_Name: TankGunSO
   m_EditorClassIdentifier: 
-  Speed: 2.4
-  ShootOffset: 0.31
+  Speed: 2.8
+  ShootOffset: 0.44
   Delay: 0.78

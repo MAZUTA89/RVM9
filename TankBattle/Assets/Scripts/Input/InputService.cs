@@ -25,6 +25,18 @@ namespace Assets.Scripts.Input
         {
             return _playerInput.ActionsMap.Shoot.WasPerformedThisFrame();
         }
+        public bool IsEscape()
+        {
+            return _playerInput.ActionsMap.Escape.WasPerformedThisFrame();
+        }
+        public bool IncHealth()
+        {
+            return _playerInput.ActionsMap.IncrementHealth.WasPerformedThisFrame();
+        }
+        public bool DecrHealth()
+        {
+            return _playerInput.ActionsMap.DecrementHealth.WasPerformedThisFrame();
+        }
 
         public void Dispose()
         {

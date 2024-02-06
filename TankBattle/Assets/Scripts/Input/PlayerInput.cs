@@ -44,6 +44,33 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""985e8f12-3482-40f0-a3c9-d8a8d17b6bf3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""IncrementHealth"",
+                    ""type"": ""Button"",
+                    ""id"": ""6db21822-079c-4c76-bb5b-f3d847f3545b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DecrementHealth"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf10f3d2-b6bc-4c2c-9d4a-e65b0dc476a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -123,6 +150,39 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a1a424f-2714-4fa5-a1e1-9eed1ed8bbbe"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ba2ca8e-d2b1-4c0c-8b8e-247d5557c8a9"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""IncrementHealth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f852958-9366-4258-9793-39a6db647d41"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DecrementHealth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -139,6 +199,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_ActionsMap = asset.FindActionMap("ActionsMap", throwIfNotFound: true);
         m_ActionsMap_Movement = m_ActionsMap.FindAction("Movement", throwIfNotFound: true);
         m_ActionsMap_Shoot = m_ActionsMap.FindAction("Shoot", throwIfNotFound: true);
+        m_ActionsMap_Escape = m_ActionsMap.FindAction("Escape", throwIfNotFound: true);
+        m_ActionsMap_IncrementHealth = m_ActionsMap.FindAction("IncrementHealth", throwIfNotFound: true);
+        m_ActionsMap_DecrementHealth = m_ActionsMap.FindAction("DecrementHealth", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -202,12 +265,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IActionsMapActions> m_ActionsMapActionsCallbackInterfaces = new List<IActionsMapActions>();
     private readonly InputAction m_ActionsMap_Movement;
     private readonly InputAction m_ActionsMap_Shoot;
+    private readonly InputAction m_ActionsMap_Escape;
+    private readonly InputAction m_ActionsMap_IncrementHealth;
+    private readonly InputAction m_ActionsMap_DecrementHealth;
     public struct ActionsMapActions
     {
         private @PlayerInput m_Wrapper;
         public ActionsMapActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_ActionsMap_Movement;
         public InputAction @Shoot => m_Wrapper.m_ActionsMap_Shoot;
+        public InputAction @Escape => m_Wrapper.m_ActionsMap_Escape;
+        public InputAction @IncrementHealth => m_Wrapper.m_ActionsMap_IncrementHealth;
+        public InputAction @DecrementHealth => m_Wrapper.m_ActionsMap_DecrementHealth;
         public InputActionMap Get() { return m_Wrapper.m_ActionsMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -223,6 +292,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Shoot.started += instance.OnShoot;
             @Shoot.performed += instance.OnShoot;
             @Shoot.canceled += instance.OnShoot;
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
+            @IncrementHealth.started += instance.OnIncrementHealth;
+            @IncrementHealth.performed += instance.OnIncrementHealth;
+            @IncrementHealth.canceled += instance.OnIncrementHealth;
+            @DecrementHealth.started += instance.OnDecrementHealth;
+            @DecrementHealth.performed += instance.OnDecrementHealth;
+            @DecrementHealth.canceled += instance.OnDecrementHealth;
         }
 
         private void UnregisterCallbacks(IActionsMapActions instance)
@@ -233,6 +311,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Shoot.started -= instance.OnShoot;
             @Shoot.performed -= instance.OnShoot;
             @Shoot.canceled -= instance.OnShoot;
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
+            @IncrementHealth.started -= instance.OnIncrementHealth;
+            @IncrementHealth.performed -= instance.OnIncrementHealth;
+            @IncrementHealth.canceled -= instance.OnIncrementHealth;
+            @DecrementHealth.started -= instance.OnDecrementHealth;
+            @DecrementHealth.performed -= instance.OnDecrementHealth;
+            @DecrementHealth.canceled -= instance.OnDecrementHealth;
         }
 
         public void RemoveCallbacks(IActionsMapActions instance)
@@ -263,5 +350,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
+        void OnIncrementHealth(InputAction.CallbackContext context);
+        void OnDecrementHealth(InputAction.CallbackContext context);
     }
 }

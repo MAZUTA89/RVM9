@@ -9,6 +9,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Rendering;
 using Newtonsoft.Json.Linq;
+using static Cinemachine.CinemachineImpulseManager.ImpulseEvent;
 
 namespace Assets.Scripts.Enemy.MoveTerritores
 {
@@ -181,20 +182,35 @@ namespace Assets.Scripts.Enemy.MoveTerritores
                 }
             }
         }
-        public void AddTerritory(MoveTerritory moveTerritory)
+       
+        public MoveTerritory GetMoveTerritory(MoveTerritoryIndex moveTerritoryIndex, Side side)
         {
-            MoveTerritorie.Add(moveTerritory);
-        }
-
-        public Vector3 GetRandomMoveTerritorypPosition()
-        {
-            int randomIndex = Random.Range(0, MoveTerritorie.Count);
-
-            return MoveTerritorie[randomIndex].transform.position;
-        }
-        public MoveTerritory GetTerritoryByIndex(MoveTerritoryIndex moveTerritoryIndex)
-        {
-            return _moveTerritories[moveTerritoryIndex.Index][moveTerritoryIndex.Jndex];
+            iStart = moveTerritoryIndex.Index;
+            jStart = moveTerritoryIndex.Jndex;
+            Side randomSide = Side.Down;
+            //Side randomSide = (Side)Random.Range(1, 5);
+            //DirectionSide = randomSide;
+            switch (randomSide)
+            {
+                case Side.Left:
+                    {
+                        return GetRandomMoveTerritoryByLeftSide();
+                    }
+                case Side.Right:
+                    {
+                        return GetRandomMoveTerritoryByRightSide();
+                    }
+                case Side.Up:
+                    {
+                        return GetRandomMoveTerritoryByUpSide();
+                    }
+                case Side.Down:
+                    {
+                        return GetRandomMoveTerritoryByDownSide();
+                    }
+                default:
+                    return null;
+            }
         }
         public MoveTerritory GetRandomMoveTerritory(MoveTerritoryIndex moveTerritoryIndex, out Side DirectionSide)
         {

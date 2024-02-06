@@ -114,10 +114,19 @@ namespace Assets.Scripts.Enemy.StateMachine.States
                 ,out Direction);
             CurrentMovePoint = MoveTerritoryInProgress.transform.position;
         }
+       
         #endregion
         public void SetMoveTerritory(MoveTerritory moveTerritory)
         {
             InitializeMovepoint(moveTerritory);
+        }
+        public void SetMoveTerritoryAndStartSide(MoveTerritory moveTerritory, Side side)
+        {
+            Direction = side;
+            MoveTerritoryInProgress = MoveTerritoryProvider.
+                GetMoveTerritory(moveTerritory.MoveTerritoryIndex
+                , Direction);
+            CurrentMovePoint = MoveTerritoryInProgress.transform.position;
         }
 
     }
